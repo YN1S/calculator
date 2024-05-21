@@ -2,6 +2,9 @@
 #define CALCUI_H
 
 #include <QWidget>
+#include <map>
+#include "calclogic.h"
+#include "state.h"
 
 class QPushButton;
 class QLabel;
@@ -16,10 +19,15 @@ public:
 
 private: // Переменные
     QLineEdit* _displaySolving;
-    QLabel* _displayAnswer;
+    QLabel* _displayPreviusValue;
+
+    std::map<QObject*, state> buttonAndState;
+
+    CalcLogic logic;
 
 private: // Функции
     QPushButton* createButton(const QChar& str);
+    state stateOfButton(const QChar &str);
 
 public slots:
     void mySlot();
